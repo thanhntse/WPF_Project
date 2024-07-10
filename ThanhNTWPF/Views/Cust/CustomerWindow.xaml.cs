@@ -23,7 +23,7 @@ namespace ThanhNTWPF.Views.Cust
     public partial class CustomerWindow : Window
     {
         private Customer customer = null!;
-        
+
         public CustomerWindow(Customer cus)
         {
             InitializeComponent();
@@ -50,7 +50,7 @@ namespace ThanhNTWPF.Views.Cust
                         ContentArea.Content = new ProfileControl(customer);
                         break;
                     case "History":
-                        ContentArea.Content = new History(customer.BookingReservations);
+                        ContentArea.Content = new History(customer);
                         break;
                     case "SignOut":
                         LoginWindow login = new LoginWindow();

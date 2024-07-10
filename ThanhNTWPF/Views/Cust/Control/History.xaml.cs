@@ -1,4 +1,5 @@
 ﻿using BusinessObjects.Models;
+using Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,12 +22,14 @@ namespace ThanhNTWPF.Views.Cust.Control
     /// </summary>
     public partial class History : UserControl
     {
-        public ICollection<BookingReservation> BookingReservations { get; set; }
+        private readonly IBookingReservationService BookingReservationService;
+        public List<BookingReservation> BookingReservations { get; set; }
 
-        public History(ICollection<BookingReservation> br)
+        public History(Customer cus)
         {
             InitializeComponent();
-            this.BookingReservations = br;
+            BookingReservationService = new BookingReservationService();
+            this.BookingReservations = BookingReservationService.GetBookingReservationsOfCustomer(cus.CustomerId);
             this.DataContext = this;
         }
 

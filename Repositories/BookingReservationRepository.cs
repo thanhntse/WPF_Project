@@ -20,5 +20,8 @@ namespace Repositories
 
         public void DeleteBookingReservation(BookingReservation bookingReservation)
             => BookingReservationDAO.Instance.DeleteBookingReservation(bookingReservation);
+
+        public List<BookingReservation> GetBookingReservationsOfCustomer(int id)
+            => BookingReservationDAO.Instance.GetBookingReservationsOfCustomer(id);
     }
 }

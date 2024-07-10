@@ -37,5 +37,10 @@ namespace Services
         {
             this.BookingReservationRepository.DeleteBookingReservation(bookingReservation);
         }
+
+        public List<BookingReservation> GetBookingReservationsOfCustomer(int id)
+        {
+            return this.BookingReservationRepository.GetBookingReservationsOfCustomer(id);
+        }
     }
 }
