@@ -24,7 +24,9 @@ namespace ThanhNTWPF.Views.Admin.Control
     public partial class UserManagement : UserControl
     {
         private readonly ICustomerService CustomerService;
-        public List<Customer> Customers { get; set; }
+        public List<Customer> Customers { get; set; } = null!;
+
+        public List<Customer> FilterCustomers { get; set; } = null!;
 
         public UserManagement()
         {
@@ -50,7 +52,8 @@ namespace ThanhNTWPF.Views.Admin.Control
             try
             {
                 Customers = CustomerService.GetAll();
-                DgData.ItemsSource = Customers;
+                FilterCustomers = CustomerService.GetAll();
+                DgData.ItemsSource = FilterCustomers;
             }
             catch
             {
@@ -117,6 +120,7 @@ namespace ThanhNTWPF.Views.Admin.Control
                     if (result == MessageBoxResult.Yes)
                     {
                         CustomerService.DeleteCustomer(selectedCustomer);
+                        LoadCustomerList();
                     }
                 }
                 else
@@ -130,7 +134,6 @@ namespace ThanhNTWPF.Views.Admin.Control
             }
             finally
             {
-                LoadCustomerList();
             }
         }
 
@@ -177,6 +180,17 @@ namespace ThanhNTWPF.Views.Admin.Control
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
             UserDialogPopup.IsOpen = false;
+        }
+
+        private void TxtSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            FilterCustomers = Customers.Where(c =>
+                (string.IsNullOrEmpty(TxtSearchName.Text) || c.CustomerFullName.ToUpper().Contains(TxtSearchName.Text.ToUpper())) &&
+                (string.IsNullOrEmpty(TxtSearchPhone.Text) || c.Telephone.ToUpper().Contains(TxtSearchPhone.Text.ToUpper())) &&
+                (string.IsNullOrEmpty(TxtSearchEmail.Text) || c.EmailAddress.ToUpper().Contains(TxtSearchEmail.Text.ToUpper()))
+            ).ToList();
+
+            DgData.ItemsSource = FilterCustomers;
         }
 
     }

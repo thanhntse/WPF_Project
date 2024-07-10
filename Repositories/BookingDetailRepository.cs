@@ -17,5 +17,8 @@ namespace Repositories
 
         public void DeleteBookingDetail(BookingDetail bookingDetail)
             => BookingDetailDAO.Instance.DeleteBookingDetail(bookingDetail);
+
+        public List<BookingDetail> GetAllByRoomId(int roomId)
+            => BookingDetailDAO.Instance.GetAllByRoomId(roomId);
     }
 }
