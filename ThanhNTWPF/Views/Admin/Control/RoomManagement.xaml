@@ -6,8 +6,183 @@
              xmlns:local="clr-namespace:ThanhNTWPF.Views.Admin.Control"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style x:Key="HoverButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="LightGray"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="DarkGray"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="DataGrid">
+            <Setter Property="Background" Value="#FFFAFAFA"/>
+            <Setter Property="Foreground" Value="#FF333333"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="BorderBrush" Value="#FFDADADA"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalGridLinesBrush" Value="#FFE0E0E0"/>
+            <Setter Property="VerticalGridLinesBrush" Value="#FFE0E0E0"/>
+            <Setter Property="RowBackground" Value="#FFFFFFFF"/>
+            <Setter Property="AlternatingRowBackground" Value="#FFF0F0F0"/>
+            <Setter Property="ColumnHeaderHeight" Value="35"/>
+            <Setter Property="RowHeight" Value="30"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="CanUserAddRows" Value="False"/>
+            <Setter Property="CanUserDeleteRows" Value="False"/>
+            <Setter Property="CanUserResizeRows" Value="False"/>
+            <Setter Property="CanUserSortColumns" Value="True"/>
+            <Setter Property="CanUserResizeColumns" Value="True"/>
+            <Setter Property="SelectionUnit" Value="FullRow"/>
+            <Setter Property="GridLinesVisibility" Value="Horizontal"/>
+            <Setter Property="ColumnHeaderStyle">
+                <Setter.Value>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background" Value="#FFFAFAFA"/>
+                        <Setter Property="Foreground" Value="#FF333333"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="BorderBrush" Value="#FFDADADA"/>
+                        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="Padding" Value="5,0,5,0"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="CellStyle">
+                <Setter.Value>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="BorderBrush" Value="#FFDADADA"/>
+                        <Setter Property="BorderThickness" Value="0,0,1,1"/>
+                        <Setter Property="Padding" Value="5,0,5,0"/>
+                        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="DataGridRow">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#FF333333"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="#FF3399FF"/>
+                    <Setter Property="Foreground" Value="#FFFFFFFF"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FFE0E0E0"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-        <DataGrid ItemsSource="{Binding RoomInformations}" AutoGenerateColumns="True" CanUserAddRows="False" SelectionChanged="DataGrid_SelectionChanged"
-    />
+        <StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                <Button x:Name="CreateBtn" Content="Create" Style="{StaticResource HoverButtonStyle}" Margin="5" Click="CreateBtn_Click"/>
+                <Button x:Name="UpdateBtn" Content="Update" Style="{StaticResource HoverButtonStyle}" Margin="5" Click="UpdateBtn_Click"/>
+                <Button x:Name="DeleteBtn" Content="Delete" Style="{StaticResource HoverButtonStyle}" Margin="5" Click="DeleteBtn_Click"/>
+            </StackPanel>
+
+            <Grid Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Room Number:" VerticalAlignment="Center" Margin="5" Foreground="White" FontWeight="Bold"/>
+                <TextBox x:Name="TxtSearchRoomNumber" Grid.Row="1" Grid.Column="0" Width="100" Margin="5" TextChanged="TxtSearch_TextChanged"/>
+
+                <TextBlock Grid.Row="0" Grid.Column="1" Text="Max Capacity:" VerticalAlignment="Center" Margin="5" Foreground="White" FontWeight="Bold"/>
+                <TextBox x:Name="TxtSearchMaxCapacity" Grid.Row="1" Grid.Column="1" Width="100" Margin="5" TextChanged="TxtSearch_TextChanged"/>
+
+                <TextBlock Grid.Row="0" Grid.Column="2" Text="Room Type:" VerticalAlignment="Center" Margin="5" Foreground="White" FontWeight="Bold"/>
+                <TextBox x:Name="TxtSearchRoomType" Grid.Row="1" Grid.Column="2" Width="150" Margin="5" TextChanged="TxtSearch_TextChanged"/>
+
+                <TextBlock Grid.Row="0" Grid.Column="3" Text="Min:" VerticalAlignment="Center" Margin="5" Foreground="White" FontWeight="Bold"/>
+                <TextBox x:Name="TxtMinPrice" Grid.Row="1" Grid.Column="3" Width="100" Margin="5" TextChanged="TxtSearch_TextChanged"/>
+
+                <TextBlock Grid.Row="0" Grid.Column="4" Text="Max:" VerticalAlignment="Center" Margin="5" Foreground="White" FontWeight="Bold"/>
+                <TextBox x:Name="TxtMaxPrice" Grid.Row="1" Grid.Column="4" Width="100" Margin="5" TextChanged="TxtSearch_TextChanged"/>
+            </Grid>
+
+            <DataGrid x:Name="DgData" SelectionChanged="DataGrid_SelectionChanged" ItemsSource="{Binding FilteredRooms}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Room ID" Binding="{Binding RoomId}" />
+                    <DataGridTextColumn Header="Room Number" Binding="{Binding RoomNumber}" />
+                    <DataGridTextColumn Header="Room Detail Description" Width="300" Binding="{Binding RoomDetailDescription}" />
+                    <DataGridTextColumn Header="Max Capacity" Binding="{Binding RoomMaxCapacity}" />
+                    <DataGridTextColumn Header="Room Type" Binding="{Binding RoomType.RoomTypeName}" />
+                    <DataGridTextColumn Header="Status" Binding="{Binding RoomStatus}" />
+                    <DataGridTextColumn Header="Price Per Day" Binding="{Binding RoomPricePerDay}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+
+        <Popup x:Name="RoomDialogPopup" Width="400" Height="480"
+               Placement="Center" AllowsTransparency="True" PopupAnimation="Slide">
+            <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="10" Padding="20" Background="LightGray">
+                <StackPanel>
+                    <TextBlock Text="Room Information" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+                    <StackPanel Orientation="Vertical" Margin="5">
+                        <TextBlock Text="Room Number" FontWeight="SemiBold"/>
+                        <TextBox Text="" x:Name="TxtRoomNumber" Padding="5" Margin="0,5,0,0"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" Margin="5">
+                        <TextBlock Text="Room Detail Description" FontWeight="SemiBold"/>
+                        <TextBox Text="" x:Name="TxtRoomDetail" Padding="5" Margin="0,5,0,0"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" Margin="5">
+                        <TextBlock Text="Max Capacity" FontWeight="SemiBold"/>
+                        <TextBox Text="" x:Name="TxtMaxCapacity" Padding="5" Margin="0,5,0,0"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" Margin="5">
+                        <TextBlock Text="Room Type" FontWeight="SemiBold"/>
+                        <ComboBox x:Name="ComboRoomType" Margin="0,5,0,0" Width="200"
+                              DisplayMemberPath="RoomTypeName" SelectedValuePath="RoomTypeId"
+                              ItemsSource="{Binding RoomTypes}"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" Margin="5">
+                        <TextBlock Text="Status" FontWeight="SemiBold"/>
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                            <RadioButton Content="Active" x:Name="RbActive" GroupName="RoomStatus" Margin="0,0,10,0"/>
+                            <RadioButton Content="Inactive" x:Name="RbInactive" GroupName="RoomStatus"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" Margin="5">
+                        <TextBlock Text="Price Per Day" FontWeight="SemiBold"/>
+                        <TextBox Text="" x:Name="TxtPricePerDay" Padding="5" Margin="0,5,0,0"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="20,10,20,0">
+                        <Button x:Name="SaveBtn" Content="Save" Cursor="Hand" Width="100" Margin="5" Click="SaveBtn_Click"/>
+                        <Button x:Name="CancelBtn" Content="Cancel" Cursor="Hand" Width="100" Margin="5" Click="CancelBtn_Click"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Popup>
     </Grid>
 </UserControl>
