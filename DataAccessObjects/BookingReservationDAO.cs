@@ -2,19 +2,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccessObjects
 {
-    public class CustomerDAO
+    public class BookingReservationDAO
     {
-        private static CustomerDAO instance = null!;
+        private static BookingReservationDAO instance = null!;
         private static readonly object lockObject = new object();
 
-        private CustomerDAO() { }
+        private BookingReservationDAO() { }
 
-        public static CustomerDAO Instance
+        public static BookingReservationDAO Instance
         {
             get
             {
@@ -22,38 +20,31 @@ namespace DataAccessObjects
                 {
                     if (instance == null)
                     {
-                        instance = new CustomerDAO();
+                        instance = new BookingReservationDAO();
                     }
                     return instance;
                 }
             }
         }
 
-        public Customer CheckLogin(string email, string password)
+        public List<BookingReservation> GetAll()
         {
             using var db = new FuminiHotelManagementContext();
-            return db.Customers.SingleOrDefault(c => c.EmailAddress.Equals(email)
-            && c.Password.Equals(password));
+            return db.BookingReservations.ToList();
         }
 
-        public List<Customer> GetAll()
+        public BookingReservation GetBookingReservationById(int id)
         {
             using var db = new FuminiHotelManagementContext();
-            return db.Customers.ToList();
+            return db.BookingReservations.FirstOrDefault(b => b.BookingReservationId == id);
         }
 
-        public Customer GetCustomerById(int id)
-        {
-            using var db = new FuminiHotelManagementContext();
-            return db.Customers.FirstOrDefault(c => c.CustomerId.Equals(id));
-        }
-
-        public void SaveCustomer(Customer customer)
+        public void SaveBookingReservation(BookingReservation bookingReservation)
         {
             try
             {
                 using var db = new FuminiHotelManagementContext();
-                db.Customers.Add(customer);
+                db.BookingReservations.Add(bookingReservation);
                 db.SaveChanges();
             }
             catch (Exception ex)
@@ -62,13 +53,12 @@ namespace DataAccessObjects
             }
         }
 
-        public void UpdateCustomer(Customer customer)
+        public void UpdateBookingReservation(BookingReservation bookingReservation)
         {
             try
             {
                 using var db = new FuminiHotelManagementContext();
-                db.Entry<Customer>(customer).State
-                    = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                db.Entry<BookingReservation>(bookingReservation).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                 db.SaveChanges();
             }
             catch (Exception ex)
@@ -77,17 +67,17 @@ namespace DataAccessObjects
             }
         }
 
-        public void DeleteCustomer(Customer customer)
+        public void DeleteBookingReservation(BookingReservation bookingReservation)
         {
             try
             {
                 using var db = new FuminiHotelManagementContext();
-                var p1 = db.Customers.SingleOrDefault(c => c.CustomerId == customer.CustomerId);
-                if (p1 != null)
+                var reservation = db.BookingReservations.SingleOrDefault(b => b.BookingReservationId == bookingReservation.BookingReservationId);
+                if (reservation != null)
                 {
-                    db.Customers.Remove(p1);
+                    db.BookingReservations.Remove(reservation);
                     db.SaveChanges();
-                }    
+                }
             }
             catch (Exception ex)
             {

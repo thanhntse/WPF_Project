@@ -9,13 +9,66 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\closeBtn_default.png" />
+    <None Remove="Assets\closeBtn_MouseOver.png" />
+    <None Remove="Assets\fpt-hotel-background.jpeg" />
+    <None Remove="Assets\fpt-logo.png" />
+    <None Remove="Assets\img_background.jpeg" />
+    <None Remove="Assets\img_background.png" />
+    <None Remove="Assets\img_contact.png" />
+    <None Remove="Assets\img_home.png" />
+    <None Remove="Assets\img_map.png" />
+    <None Remove="Assets\img_message.png" />
+    <None Remove="Assets\img_setting.png" />
+    <None Remove="Assets\img_signout.png" />
+    <None Remove="Assets\key-icon.png" />
+    <None Remove="Assets\tgBtn_default.png" />
+    <None Remove="Assets\tgBtn_MouseOver.png" />
+    <None Remove="Assets\user-icon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\fpt-hotel-background.jpeg" />
+    <Resource Include="Assets\fpt-logo.png" />
+    <Resource Include="Assets\img_background.jpeg" />
+    <Resource Include="Assets\user-icon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Services\Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\closeBtn_default.png" />
+    <Resource Include="Assets\closeBtn_MouseOver.png" />
+    <Resource Include="Assets\img_background.png" />
+    <Resource Include="Assets\img_contact.png" />
+    <Resource Include="Assets\img_home.png" />
+    <Resource Include="Assets\img_map.png" />
+    <Resource Include="Assets\img_message.png" />
+    <Resource Include="Assets\img_setting.png" />
+    <Resource Include="Assets\img_signout.png" />
+    <Resource Include="Assets\key-icon.png" />
+    <Resource Include="Assets\tgBtn_default.png" />
+    <Resource Include="Assets\tgBtn_MouseOver.png" />
   </ItemGroup>
 
   <ItemGroup>
     <None Update="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\Cust\Control\HomeControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Cust\Control\ProfileControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Cust\CustomerWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 
 </Project>

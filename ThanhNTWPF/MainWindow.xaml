@@ -66,8 +66,8 @@
             <DataGrid x:Name="DgData" Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="2" Margin="10" AutoGenerateColumns="True" SelectionChanged="DgData_SelectionChanged"/>
 
             <StackPanel Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Button x:Name="BtnCreate" Content="Create" Cursor="Hand" Width="75" Height="30" Background="#FF0099FF" Foreground="White" Margin="0,0,10,0" Click="BtnCreate_Click"/>
-                <Button x:Name="BtnUpdate" Content="Update" Cursor="Hand" Width="75" Height="30" Background="#FF1B7140" Foreground="White" Margin="0,0,10,0" Click="BtnUpdate_Click"/>
+                <Button x:Name="BtnCreate" Content="Create" Cursor="Hand" Width="75" Height="30" Background="#FF0099FF" Foreground="White" Margin="0,0,10,0"/>
+                <Button x:Name="BtnUpdate" Content="Update" Cursor="Hand" Width="75" Height="30" Background="#FF1B7140" Foreground="White" Margin="0,0,10,0"/>
                 <Button x:Name="BtnDelete" Content="Delete" Cursor="Hand" Width="75" Height="30" Background="#FFA2AA3D" Foreground="White" Margin="0,0,10,0" Click="BtnDelete_Click"/>
                 <Button x:Name="BtnClose" Content="Close" Cursor="Hand" Width="75" Height="30" Background="#FFEF8F18" Foreground="White" Click="BtnClose_Click"/>
             </StackPanel>
