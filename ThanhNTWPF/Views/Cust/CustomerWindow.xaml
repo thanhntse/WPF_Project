@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ThanhNTWPF.Views.Cust"
         mc:Ignorable="d"
-        Title="Hotel Management App" Height="600" Width="900"
+        Title="Hotel Management App" Height="800" Width="1200"
         ResizeMode="NoResize"
-        Topmost="True"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         MouseDown="Window_MouseDown"
+        Topmost="False"
 >
     <Window.Resources>
 
@@ -46,7 +46,6 @@
 
             <Setter Property="Placement" Value="Right"/>
             <Setter Property="Height" Value="40"/>
-            <Setter Property="Width" Value="100"/>
             <Setter Property="Margin" Value="20,0,0,0"/>
             <Setter Property="Background" Value="#4A5668"/>
             <Setter Property="BorderBrush" Value="Transparent"/>
@@ -323,7 +322,7 @@
                                                 Storyboard.TargetName="nav_pnl"
                                                 Storyboard.TargetProperty="Width"
                                                 BeginTime="0:0:0"
-                                                From="230" To="65"
+                                                From="300" To="65"
                                                 Duration="0:0:0.2">
 
                                             </DoubleAnimation>
@@ -345,7 +344,7 @@
                                                 Storyboard.TargetName="nav_pnl"
                                                 Storyboard.TargetProperty="Width"
                                                 BeginTime="0:0:0"
-                                                From="65" To="230"
+                                                From="65" To="300"
                                                 Duration="0:0:0.3">
 
                                             </DoubleAnimation>
@@ -380,7 +379,7 @@
                                       Tag="Home">
 
                             <StackPanel Orientation="Horizontal"
-                                        Width="230">
+                                        Width="300">
 
                                 <Image Source="../../Assets/img_home.png"
                                        Stretch="None"
@@ -413,7 +412,7 @@
                                       Tag="Profile">
 
                             <StackPanel Orientation="Horizontal"
-                                        Width="230">
+                                        Width="300">
 
                                 <Image Source="../../Assets/img_contact.png"
                                        Stretch="None"
@@ -446,7 +445,7 @@
                               Tag="History">
 
                             <StackPanel Orientation="Horizontal"
-                                     Width="230">
+                                     Width="300">
 
                                 <Image Source="../../Assets/img-booking.png"
                                        Stretch="Fill"
@@ -479,7 +478,7 @@
                                       Tag="SignOut">
 
                             <StackPanel Orientation="Horizontal"
-                                        Width="230">
+                                        Width="300">
 
                                 <Image Source="../../Assets/img_signout.png"
                                        Stretch="None"

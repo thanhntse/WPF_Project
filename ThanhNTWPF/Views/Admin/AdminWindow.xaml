@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ThanhNTWPF.Views.Admin"
         mc:Ignorable="d"
-        Title="Hotel Management App" Height="600" Width="800"
+        Title="Hotel Management App" Height="800" Width="1200"
         ResizeMode="NoResize"
-        Topmost="True"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
+        MouseDown="Window_MouseDown"
+        Topmost="False"
 >
     <Window.Resources>
 
@@ -45,7 +46,6 @@
 
             <Setter Property="Placement" Value="Right"/>
             <Setter Property="Height" Value="40"/>
-            <Setter Property="Width" Value="100"/>
             <Setter Property="Margin" Value="20,0,0,0"/>
             <Setter Property="Background" Value="#4A5668"/>
             <Setter Property="BorderBrush" Value="Transparent"/>
@@ -158,47 +158,84 @@
 
     <Grid>
 
-        <!--// Background Color //-->
-
         <Grid Background="Black">
 
             <!--// Background Image //-->
-
             <Grid x:Name="BG" PreviewMouseLeftButtonDown="BG_PreviewMouseLeftButtonDown">
 
                 <Grid.Background>
 
                     <ImageBrush x:Name="img_bg"
-                                ImageSource="../../Assets/img_background.png"
-                                Stretch="Fill"/>
+                        ImageSource="../../Assets/img_background.jpeg"
+                        Stretch="Fill"/>
 
                 </Grid.Background>
 
             </Grid>
 
-            <!--// App Close Button //-->
+            <!-- Gradient Overlay -->
+            <Rectangle>
+                <Rectangle.Fill>
+                    <LinearGradientBrush Opacity="0.7" StartPoint="0,1" EndPoint="1,0">
+                        <GradientStop Color="Black" Offset="0"/>
+                        <GradientStop Color="#FF3A3A65" Offset="1"/>
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
 
+            <!--// App Close Button //-->
             <Grid>
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="60"/>
-                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="60"/>
                 </Grid.ColumnDefinitions>
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
                     <RowDefinition Height="60"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
+                <Button x:Name="MinimizeBtn"
+            Grid.Column="1"
+            Grid.Row="0"
+            Height="40"
+            Width="40"
+            BorderThickness="0"
+            Cursor="Hand"
+            Background="Transparent"
+            Click="MinimizeBtn_Click"
+            VerticalAlignment="Top"
+            Margin="0,0,0,0">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Grid>
+                                <TextBlock x:Name="ButtonText" 
+                           Text="-" 
+                           FontSize="60"
+                           FontWeight="Normal"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Foreground="Black"/>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="ButtonText" Property="Foreground" Value="Red"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
                 <Button x:Name="CloseBtn"
-                        Grid.Column="1"
-                        Grid.Row="1"
-                        Height="40"
-                        Width="40"
-                        BorderThickness="0"
-                        Style="{StaticResource Close_btn}" Click="CloseBtn_Click">
+                Grid.Column="2"
+                Grid.Row="0"
+                Height="40"
+                Width="40"
+                BorderThickness="0"
+                Cursor="Hand"
+                Style="{StaticResource Close_btn}" Click="CloseBtn_Click">
 
                     <Button.Background>
 
@@ -210,13 +247,11 @@
 
             </Grid>
 
-
             <!--// Navigation Panel //-->
-
             <Grid   x:Name="nav_pnl"
-                    HorizontalAlignment="Left"
-                    Width="65"
-                    Background="#2E333A">
+            HorizontalAlignment="Left"
+            Width="65"
+            Background="#2E333A">
 
                 <StackPanel x:Name="st_pnl">
 
@@ -227,24 +262,24 @@
                         <!--// Menu title text //-->
 
                         <TextBlock  Grid.Row="1"
-                                    Grid.Column="0"
-                                    Margin="73,-20,0,0"
-                                    Text="M E N U"
-                                    Foreground="White"
-                                    FontSize="22"
-                                    Background="Transparent"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Center"
-                                    Style="{StaticResource font_style}">
-                            
-                            <!--// Shadow Effect //-->
+                            Grid.Column="0"
+                            Margin="73,-20,0,0"
+                            Text="M E N U"
+                            Foreground="White"
+                            FontSize="22"
+                            Background="Transparent"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Style="{StaticResource font_style}">
+                    
+                    <!--// Shadow Effect //-->
 
                             <TextBlock.Effect>
 
                                 <DropShadowEffect  BlurRadius="10"
-                                                   ShadowDepth="1"
-                                                   Direction="-90"
-                                                   Color="White"/>
+                                           ShadowDepth="1"
+                                           Direction="-90"
+                                           Color="White"/>
 
                             </TextBlock.Effect>
 
@@ -253,21 +288,22 @@
                         <!--// Toggle Button //-->
 
                         <ToggleButton x:Name="Tg_Btn"
-                                      Grid.Column="0"
-                                      VerticalAlignment="Center"
-                                      HorizontalAlignment="Left"
-                                      Margin="18,-20,0,0"
-                                      Height="30"
-                                      Width="30"
-                                      BorderThickness="0"
-                                      Style="{StaticResource tb_style}" Unchecked="Tg_Btn_Unchecked" Checked="Tg_Btn_Checked">
+                              Grid.Column="0"
+                              VerticalAlignment="Center"
+                              HorizontalAlignment="Left"
+                              Margin="18,-20,0,0"
+                              Height="30"
+                              Width="30"
+                              BorderThickness="0"
+                              Cursor="Hand"
+                              Style="{StaticResource tb_style}" Unchecked="Tg_Btn_Unchecked" Checked="Tg_Btn_Checked">
 
                             <!--// Toggle button default background image //-->
 
                             <ToggleButton.Background>
 
                                 <ImageBrush ImageSource="../../Assets/tgBtn_default.png"
-                                            Stretch="None"/>
+                                    Stretch="None"/>
 
                             </ToggleButton.Background>
 
@@ -282,12 +318,12 @@
                                         <Storyboard x:Name="HideStackPanel">
 
                                             <DoubleAnimation    
-                                                
-                                                Storyboard.TargetName="nav_pnl"
-                                                Storyboard.TargetProperty="Width"
-                                                BeginTime="0:0:0"
-                                                From="230" To="65"
-                                                Duration="0:0:0.2">
+                                        
+                                        Storyboard.TargetName="nav_pnl"
+                                        Storyboard.TargetProperty="Width"
+                                        BeginTime="0:0:0"
+                                        From="300" To="65"
+                                        Duration="0:0:0.2">
 
                                             </DoubleAnimation>
 
@@ -304,12 +340,12 @@
                                         <Storyboard x:Name="ShowStackPanel">
 
                                             <DoubleAnimation
-                                                
-                                                Storyboard.TargetName="nav_pnl"
-                                                Storyboard.TargetProperty="Width"
-                                                BeginTime="0:0:0"
-                                                From="65" To="230"
-                                                Duration="0:0:0.3">
+                                        
+                                        Storyboard.TargetName="nav_pnl"
+                                        Storyboard.TargetProperty="Width"
+                                        BeginTime="0:0:0"
+                                        From="65" To="300"
+                                        Duration="0:0:0.3">
 
                                             </DoubleAnimation>
 
@@ -329,26 +365,29 @@
                     <!--// ListView with menu list items //-->
 
                     <ListView  x:Name="LV"
-                               Background="Transparent"
-                               BorderBrush="Transparent"
-                               ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                       Background="Transparent"
+                       BorderBrush="Transparent"
+                       ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                       SelectionChanged="LV_SelectionChanged">
 
                         <!--// Home //-->
 
                         <ListViewItem HorizontalAlignment="Left"
-                                      Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
-                                      >
+                              Margin="0,0,0,15" 
+                              Cursor="Hand"
+                              MouseEnter="ListViewItem_MouseEnter"
+                              Tag="Home">
 
                             <StackPanel Orientation="Horizontal"
-                                        Width="230">
+                                Width="300">
 
                                 <Image Source="../../Assets/img_home.png"
-                                       Stretch="None"
-                                       Margin="12,0,0,0"/>
+                               Stretch="None"
+                               Margin="12,0,0,0"/>
 
                                 <TextBlock Text="Home"
-                                           Margin="25,0,0,0"
-                                           Style="{StaticResource font_style}"/>
+                                   Margin="25,0,0,0"
+                                   Style="{StaticResource font_style}"/>
 
                             </StackPanel>
 
@@ -357,8 +396,8 @@
                             <ListViewItem.ToolTip>
 
                                 <ToolTip x:Name="tt_home"
-                                         Content="Home"
-                                         Style="{StaticResource tt_style}"/>
+                                 Content="Home"
+                                 Style="{StaticResource tt_style}"/>
 
                             </ListViewItem.ToolTip>
 
@@ -367,19 +406,21 @@
                         <!--// Contacts //-->
 
                         <ListViewItem HorizontalAlignment="Left"
-                                      Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
-                                      >
+                              Margin="0,0,0,15" 
+                              Cursor="Hand"
+                              MouseEnter="ListViewItem_MouseEnter"
+                              Tag="User">
 
                             <StackPanel Orientation="Horizontal"
-                                        Width="230">
+                                Width="300">
 
                                 <Image Source="../../Assets/img_contact.png"
-                                       Stretch="None"
-                                       Margin="12,0,0,0"/>
+                               Stretch="None"
+                               Margin="12,0,0,0"/>
 
-                                <TextBlock Text="Contacts"
-                                           Margin="25,0,0,0"
-                                           Style="{StaticResource font_style}"/>
+                                <TextBlock Text="User management"
+                                   Margin="25,0,0,0"
+                                   Style="{StaticResource font_style}"/>
 
                             </StackPanel>
 
@@ -388,29 +429,31 @@
                             <ListViewItem.ToolTip>
 
                                 <ToolTip x:Name="tt_contacts"
-                                         Content="Contacts"
-                                         Style="{StaticResource tt_style}"/>
+                                 Content="User management"
+                                 Style="{StaticResource tt_style}"/>
 
                             </ListViewItem.ToolTip>
 
                         </ListViewItem>
 
-                        <!--// Messages //-->
+                        <!--// Rooms //-->
 
                         <ListViewItem HorizontalAlignment="Left"
-                                      Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
-                                      >
+                              Margin="0,0,0,15" 
+                              Cursor="Hand"
+                              MouseEnter="ListViewItem_MouseEnter"
+                              Tag="Room">
 
                             <StackPanel Orientation="Horizontal"
-                                        Width="230">
+                                    Width="300">
 
-                                <Image Source="../../Assets/img_message.png"
-                                       Stretch="None"
-                                       Margin="12,0,0,0"/>
+                                <Image Source="../../Assets/img-room.png"
+                                       Stretch="Fill"
+                                       Margin="5,0,0,0"/>
 
-                                <TextBlock Text="Messages"
-                                           Margin="25,0,0,0"
-                                           Style="{StaticResource font_style}"/>
+                                <TextBlock Text="Room management"
+                                       Margin="15,0,0,0"
+                                       Style="{StaticResource font_style}"/>
 
                             </StackPanel>
 
@@ -418,30 +461,32 @@
 
                             <ListViewItem.ToolTip>
 
-                                <ToolTip x:Name="tt_messages"
-                                         Content="Messages"
-                                         Style="{StaticResource tt_style}"/>
+                                <ToolTip x:Name="tt_room"
+                                     Content="Room management"
+                                     Style="{StaticResource tt_style}"/>
 
                             </ListViewItem.ToolTip>
 
                         </ListViewItem>
 
-                        <!--// Maps //-->
+                        <!--// History //-->
 
                         <ListViewItem HorizontalAlignment="Left"
-                                      Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
-                                      >
+                      Margin="0,0,0,15" 
+                      Cursor="Hand"
+                      MouseEnter="ListViewItem_MouseEnter"
+                      Tag="Booking">
 
                             <StackPanel Orientation="Horizontal"
-                                        Width="230">
+                             Width="300">
 
-                                <Image Source="../../Assets/img_map.png"
-                                       Stretch="None"
-                                       Margin="12,0,0,0"/>
+                                <Image Source="../../Assets/img-booking.png"
+                               Stretch="Fill"
+                               Margin="8,0,-4,0"/>
 
-                                <TextBlock Text="Maps"
-                                           Margin="25,0,0,0"
-                                           Style="{StaticResource font_style}"/>
+                                <TextBlock Text="Booking management"
+                               Margin="25,0,0,0"
+                               Style="{StaticResource font_style}"/>
 
                             </StackPanel>
 
@@ -449,40 +494,9 @@
 
                             <ListViewItem.ToolTip>
 
-                                <ToolTip x:Name="tt_maps"
-                                         Content="Maps"
-                                         Style="{StaticResource tt_style}"/>
-
-                            </ListViewItem.ToolTip>
-
-                        </ListViewItem>
-
-                        <!--// Settings //-->
-
-                        <ListViewItem HorizontalAlignment="Left"
-                                      Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
-                                      >
-
-                            <StackPanel Orientation="Horizontal"
-                                        Width="230">
-
-                                <Image Source="../../Assets/img_setting.png"
-                                       Stretch="None"
-                                       Margin="12,0,0,0"/>
-
-                                <TextBlock Text="Settings"
-                                           Margin="25,0,0,0"
-                                           Style="{StaticResource font_style}"/>
-
-                            </StackPanel>
-
-                            <!--// Tooltip //-->
-
-                            <ListViewItem.ToolTip>
-
-                                <ToolTip x:Name="tt_settings"
-                                         Content="Settings"
-                                         Style="{StaticResource tt_style}"/>
+                                <ToolTip x:Name="tt_booking"
+                                 Content="Booking management"
+                                 Style="{StaticResource tt_style}"/>
 
                             </ListViewItem.ToolTip>
 
@@ -491,19 +505,21 @@
                         <!--// Sign Out //-->
 
                         <ListViewItem HorizontalAlignment="Left"
-                                      Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
-                                      >
+                              Margin="0,0,0,15" 
+                              Cursor="Hand"
+                              MouseEnter="ListViewItem_MouseEnter"
+                              Tag="SignOut">
 
                             <StackPanel Orientation="Horizontal"
-                                        Width="230">
+                                Width="300">
 
                                 <Image Source="../../Assets/img_signout.png"
-                                       Stretch="None"
-                                       Margin="12,0,0,0"/>
+                               Stretch="None"
+                               Margin="12,0,0,0"/>
 
                                 <TextBlock Text="Sign Out"
-                                           Margin="25,0,0,0"
-                                           Style="{StaticResource font_style}"/>
+                                   Margin="25,0,0,0"
+                                   Style="{StaticResource font_style}"/>
 
                             </StackPanel>
 
@@ -512,8 +528,8 @@
                             <ListViewItem.ToolTip>
 
                                 <ToolTip x:Name="tt_signout"
-                                         Content="Sign Out"
-                                         Style="{StaticResource tt_style}"/>
+                                 Content="Sign Out"
+                                 Style="{StaticResource tt_style}"/>
 
                             </ListViewItem.ToolTip>
 
@@ -532,16 +548,16 @@
                                         <ControlTemplate TargetType="{x:Type ListViewItem}">
 
                                             <Border x:Name="Bd"
-                                                    Height="50"
-                                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                                    BorderThickness="{TemplateBinding BorderThickness}"
-                                                    Background="{TemplateBinding Background}"
-                                                    Padding="{TemplateBinding Padding}"
-                                                    SnapsToDevicePixels="True">
+                                            Height="50"
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            Background="{TemplateBinding Background}"
+                                            Padding="{TemplateBinding Padding}"
+                                            SnapsToDevicePixels="True">
 
                                                 <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
 
                                             </Border>
 
@@ -556,12 +572,12 @@
                                                     </MultiTrigger.Conditions>
 
                                                     <Setter Property="Background"
-                                                            TargetName="Bd"
-                                                            Value="#404D5B"/>
+                                                    TargetName="Bd"
+                                                    Value="#404D5B"/>
 
                                                     <Setter Property="BorderBrush"
-                                                            TargetName="Bd"
-                                                            Value="#404D5B"/>
+                                                    TargetName="Bd"
+                                                    Value="#404D5B"/>
 
                                                 </MultiTrigger>
 
@@ -583,6 +599,8 @@
 
 
             </Grid>
+
+            <ContentControl x:Name="ContentArea" Grid.Column="1" Grid.Row="2"/>
 
         </Grid>
 

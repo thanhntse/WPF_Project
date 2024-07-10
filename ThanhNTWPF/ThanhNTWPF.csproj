@@ -14,13 +14,10 @@
     <None Remove="Assets\fpt-hotel-background.jpeg" />
     <None Remove="Assets\fpt-logo.png" />
     <None Remove="Assets\img-booking.png" />
+    <None Remove="Assets\img-room.png" />
     <None Remove="Assets\img_background.jpeg" />
-    <None Remove="Assets\img_background.png" />
     <None Remove="Assets\img_contact.png" />
     <None Remove="Assets\img_home.png" />
-    <None Remove="Assets\img_map.png" />
-    <None Remove="Assets\img_message.png" />
-    <None Remove="Assets\img_setting.png" />
     <None Remove="Assets\img_signout.png" />
     <None Remove="Assets\key-icon.png" />
     <None Remove="Assets\tgBtn_default.png" />
@@ -32,6 +29,7 @@
     <Resource Include="Assets\fpt-hotel-background.jpeg" />
     <Resource Include="Assets\fpt-logo.png" />
     <Resource Include="Assets\img-booking.png" />
+    <Resource Include="Assets\img-room.png" />
     <Resource Include="Assets\img_background.jpeg" />
     <Resource Include="Assets\user-icon.png" />
   </ItemGroup>
@@ -43,12 +41,8 @@
   <ItemGroup>
     <Resource Include="Assets\closeBtn_default.png" />
     <Resource Include="Assets\closeBtn_MouseOver.png" />
-    <Resource Include="Assets\img_background.png" />
     <Resource Include="Assets\img_contact.png" />
     <Resource Include="Assets\img_home.png" />
-    <Resource Include="Assets\img_map.png" />
-    <Resource Include="Assets\img_message.png" />
-    <Resource Include="Assets\img_setting.png" />
     <Resource Include="Assets\img_signout.png" />
     <Resource Include="Assets\key-icon.png" />
     <Resource Include="Assets\tgBtn_default.png" />
