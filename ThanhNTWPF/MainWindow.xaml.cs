@@ -18,12 +18,12 @@ namespace ThanhNTWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly ICustomerService iCustomerService;
+        private readonly ICustomerService CustomerService;
 
         public MainWindow()
         {
             InitializeComponent();
-            iCustomerService = new CustomerService();
+            CustomerService = new CustomerService();
         }
 
         private void ResetInput()
@@ -41,7 +41,7 @@ namespace ThanhNTWPF
         {
             try
             {
-                var customerList = iCustomerService.GetAll();
+                var customerList = CustomerService.GetAll();
                 DgData.ItemsSource = customerList;
             }
             catch
@@ -88,67 +88,67 @@ namespace ThanhNTWPF
             }
         }
 
-        private void BtnCreate_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                Customer customer = new()
-                {
-                    CustomerFullName = TxtFullName.Text,
-                    Telephone = TxtTelephone.Text,
-                    EmailAddress = TxtEmail.Text,
-                    CustomerBirthday = DateBirthday.SelectedDate.HasValue ? DateOnly.FromDateTime(DateBirthday.SelectedDate.Value) : null,
-                    CustomerStatus = (byte?)(RbActive.IsChecked == true ? 1 : 0),
-                    Password = TxtPassword.Password
-                };
-                iCustomerService.SaveCustomer(customer);
+        //private void BtnCreate_Click(object sender, RoutedEventArgs e)
+        //{
+        //    try
+        //    {
+        //        Customer customer = new()
+        //        {
+        //            CustomerFullName = TxtFullName.Text,
+        //            Telephone = TxtTelephone.Text,
+        //            EmailAddress = TxtEmail.Text,
+        //            CustomerBirthday = DateBirthday.SelectedDate.HasValue ? DateOnly.FromDateTime(DateBirthday.SelectedDate.Value) : null,
+        //            CustomerStatus = (byte?)(RbActive.IsChecked == true ? 1 : 0),
+        //            Password = TxtPassword.Password
+        //        };
+        //        CustomerService.SaveCustomer(customer);
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                LoadCustomerList();
-            }
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //    }
+        //    finally
+        //    {
+        //        LoadCustomerList();
+        //    }
+        //}
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
-        private void BtnUpdate_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if (DgData.SelectedItem != null && DgData.SelectedItem is Customer selectedCustomer)
-                {
-                    selectedCustomer.CustomerFullName = TxtFullName.Text;
-                    selectedCustomer.Telephone = TxtTelephone.Text;
-                    selectedCustomer.EmailAddress = TxtEmail.Text;
-                    selectedCustomer.CustomerBirthday = DateBirthday.SelectedDate is DateTime date ? DateOnly.FromDateTime(date) : null;
-                    selectedCustomer.CustomerStatus = RbActive.IsChecked == true ? (byte)1 : (byte)0;
-                    selectedCustomer.Password = TxtPassword.Password;
+        //private void BtnUpdate_Click(object sender, RoutedEventArgs e)
+        //{
+        //    try
+        //    {
+        //        if (DgData.SelectedItem != null && DgData.SelectedItem is Customer selectedCustomer)
+        //        {
+        //            selectedCustomer.CustomerFullName = TxtFullName.Text;
+        //            selectedCustomer.Telephone = TxtTelephone.Text;
+        //            selectedCustomer.EmailAddress = TxtEmail.Text;
+        //            selectedCustomer.CustomerBirthday = DateBirthday.SelectedDate is DateTime date ? DateOnly.FromDateTime(date) : null;
+        //            selectedCustomer.CustomerStatus = RbActive.IsChecked == true ? (byte)1 : (byte)0;
+        //            selectedCustomer.Password = TxtPassword.Password;
 
-                    iCustomerService.UpdateCustomer(selectedCustomer);
-                }
-                else
-                {
-                    MessageBox.Show("Please select a customer to update.");
-                }
+        //            CustomerService.UpdateCustomer(selectedCustomer);
+        //        }
+        //        else
+        //        {
+        //            MessageBox.Show("Please select a customer to update.");
+        //        }
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                LoadCustomerList();
-            }
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //    }
+        //    finally
+        //    {
+        //        LoadCustomerList();
+        //    }
+        //}
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
@@ -162,7 +162,7 @@ namespace ThanhNTWPF
 
                     if (result == MessageBoxResult.Yes)
                     {
-                        iCustomerService.DeleteCustomer(selectedCustomer);
+                        CustomerService.DeleteCustomer(selectedCustomer);
                     }
                 }
                 else

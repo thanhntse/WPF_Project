@@ -10,41 +10,41 @@ namespace Services
 {
     public class CustomerService : ICustomerService
     {
-        private readonly ICustomerRepository iCustomerRepository;
+        private readonly ICustomerRepository CustomerRepository;
 
         public CustomerService()
         {
-            this.iCustomerRepository = new CustomerRepository();
+            this.CustomerRepository = new CustomerRepository();
         }
 
         public Customer CheckLogin(string email, string password)
         {
-            return this.iCustomerRepository.CheckLogin(email, password);
+            return this.CustomerRepository.CheckLogin(email, password);
         }
 
         public void DeleteCustomer(Customer customer)
         {
-            this.iCustomerRepository.DeleteCustomer(customer);
+            this.CustomerRepository.DeleteCustomer(customer);
         }
 
         public List<Customer> GetAll()
         {
-            return this.iCustomerRepository.GetAll();
+            return this.CustomerRepository.GetAll();
         }
 
         public Customer GetCustomerById(int id)
         {
-            return this.iCustomerRepository.GetCustomerById(id);
+            return this.CustomerRepository.GetCustomerById(id);
         }
 
         public void SaveCustomer(Customer customer)
         {
-            this.iCustomerRepository.SaveCustomer(customer);
+            this.CustomerRepository.SaveCustomer(customer);
         }
 
         public void UpdateCustomer(Customer customer)
         {
-            this.iCustomerRepository.UpdateCustomer(customer);
+            this.CustomerRepository.UpdateCustomer(customer);
         }
     }
 }

@@ -13,7 +13,7 @@ public partial class Customer
 
     public string EmailAddress { get; set; } = null!;
 
-    public DateOnly? CustomerBirthday { get; set; }
+    public DateTime? CustomerBirthday { get; set; }
 
     public byte? CustomerStatus { get; set; }
 
