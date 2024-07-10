@@ -39,6 +39,12 @@ namespace DataAccessObjects
             return db.BookingReservations.FirstOrDefault(b => b.BookingReservationId == id);
         }
 
+        public List<BookingReservation> GetBookingReservationsOfCustomer(int customerId)
+        {
+            using var db = new FuminiHotelManagementContext();
+            return db.BookingReservations.Where(b => b.CustomerId == customerId).ToList();
+        }
+
         public void SaveBookingReservation(BookingReservation bookingReservation)
         {
             try

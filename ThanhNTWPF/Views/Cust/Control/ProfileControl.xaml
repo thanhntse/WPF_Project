@@ -16,23 +16,23 @@
                 <TextBlock Text="Profile" FontSize="24" Foreground="White" HorizontalAlignment="Center" Margin="0,0,0,20" FontWeight="Bold"/>
 
                 <TextBlock Text="Full Name:" FontSize="18" Foreground="#A9A9A9" Margin="0,0,0,5"/>
-                <TextBox Text="{Binding Customer.CustomerFullName}" FontSize="16" Foreground="#3A3F44" Background="White" Margin="0,0,0,10" BorderThickness="0" Padding="5"/>
+                <TextBox x:Name="TxtFullName" Text="{Binding Customer.CustomerFullName}" FontSize="16" Foreground="#3A3F44" Background="White" Margin="0,0,0,10" BorderThickness="0" Padding="5"/>
 
                 <TextBlock Text="Email:" FontSize="18" Foreground="#A9A9A9" Margin="0,0,0,5"/>
-                <TextBox Text="{Binding Customer.EmailAddress}" FontSize="16" Foreground="#3A3F44" Background="White" Margin="0,0,0,10" BorderThickness="0" Padding="5"/>
+                <TextBox x:Name="TxtEmail" Text="{Binding Customer.EmailAddress}" FontSize="16" Foreground="#3A3F44" Background="White" Margin="0,0,0,10" BorderThickness="0" Padding="5"/>
 
                 <TextBlock Text="Phone:" FontSize="18" Foreground="#A9A9A9" Margin="0,0,0,5"/>
-                <TextBox Text="{Binding Customer.Telephone}" FontSize="16" Foreground="#3A3F44" Background="White" Margin="0,0,0,10" BorderThickness="0" Padding="5"/>
+                <TextBox x:Name="TxtTelephone" Text="{Binding Customer.Telephone}" FontSize="16" Foreground="#3A3F44" Background="White" Margin="0,0,0,10" BorderThickness="0" Padding="5"/>
 
                 <TextBlock Text="Birthday:" FontSize="18" Foreground="#A9A9A9" Margin="0,0,0,5"/>
-                <DatePicker SelectedDate="{Binding Customer.CustomerBirthday}" 
+                <DatePicker x:Name="DateBirthday" SelectedDate="{Binding Customer.CustomerBirthday}" 
                             FontSize="16" Foreground="#3A3F44" Background="White" Margin="0,0,0,10" BorderThickness="0" Padding="5"/>
 
                 <TextBlock Text="Password:" FontSize="18" Foreground="#A9A9A9" Margin="0,0,0,5"/>
-                <TextBox Text="{Binding Customer.Password}" FontSize="16" Foreground="#3A3F44" Background="White" Margin="0,0,0,10" BorderThickness="0" Padding="5"/>
+                <TextBox x:Name="TxtPassword" Text="{Binding Customer.Password}" FontSize="16" Foreground="#3A3F44" Background="White" Margin="0,0,0,10" BorderThickness="0" Padding="5"/>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="20,0,0,0">
-                    <Button Content="Update" Cursor="Hand" FontSize="16">
+                    <Button Content="Update" Name="UpdateBtn" Cursor="Hand" FontSize="16" Click="UpdateBtn_Click">
                         <Button.Effect>
                             <DropShadowEffect/>
                         </Button.Effect>
@@ -52,7 +52,7 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button Content="Delete Account" Cursor="Hand" FontSize="16">
+                    <Button Content="Delete Account" Name="DeleteBtn" Cursor="Hand" FontSize="16" Click="DeleteBtn_Click">
                         <Button.Effect>
                             <DropShadowEffect/>
                         </Button.Effect>

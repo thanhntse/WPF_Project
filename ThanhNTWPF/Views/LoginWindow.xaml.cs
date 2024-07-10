@@ -63,7 +63,7 @@ namespace ThanhNTWPF.Views
             else
             {
                 var temp = CustomerService.CheckLogin(email, password);
-                if (temp != null)
+                if (temp != null && temp.CustomerStatus == 1)
                 {
                     CustomerWindow customerWindow = new CustomerWindow(temp);
                     customerWindow.Show();

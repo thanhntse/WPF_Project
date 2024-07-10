@@ -448,9 +448,9 @@
                             <StackPanel Orientation="Horizontal"
                                      Width="230">
 
-                                <Image Source="../../Assets/img_message.png"
-                                       Stretch="None"
-                                       Margin="12,0,0,0"/>
+                                <Image Source="../../Assets/img-booking.png"
+                                       Stretch="Fill"
+                                       Margin="8,0,-4,0"/>
 
                                 <TextBlock Text="Booking History"
                                        Margin="25,0,0,0"

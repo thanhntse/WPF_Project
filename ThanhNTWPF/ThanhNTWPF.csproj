@@ -13,6 +13,7 @@
     <None Remove="Assets\closeBtn_MouseOver.png" />
     <None Remove="Assets\fpt-hotel-background.jpeg" />
     <None Remove="Assets\fpt-logo.png" />
+    <None Remove="Assets\img-booking.png" />
     <None Remove="Assets\img_background.jpeg" />
     <None Remove="Assets\img_background.png" />
     <None Remove="Assets\img_contact.png" />
@@ -30,6 +31,7 @@
   <ItemGroup>
     <Resource Include="Assets\fpt-hotel-background.jpeg" />
     <Resource Include="Assets\fpt-logo.png" />
+    <Resource Include="Assets\img-booking.png" />
     <Resource Include="Assets\img_background.jpeg" />
     <Resource Include="Assets\user-icon.png" />
   </ItemGroup>

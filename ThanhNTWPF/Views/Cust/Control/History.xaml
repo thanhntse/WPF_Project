@@ -6,17 +6,13 @@
              xmlns:local="clr-namespace:ThanhNTWPF.Views.Cust.Control"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Width="500">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-
-        <TextBlock Grid.Row="0" Grid.Column="0" Text="Booking History" Margin="10"/>
-        <DataGrid Grid.Row="1" Grid.Column="0" x:Name="DataGrid" AutoGenerateColumns="True" CanUserAddRows="False" ItemsSource="{Binding BookingReservations}" SelectionChanged="DataGrid_SelectionChanged" Margin="10"/>
+    <Grid Width="400" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <DataGrid ItemsSource="{Binding BookingReservations}" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Booking Date" Binding="{Binding BookingDate}" />
+                <DataGridTextColumn Header="Total Price" Binding="{Binding TotalPrice}" />
+                <DataGridTextColumn Header="Booking Status" Binding="{Binding BookingStatus}" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>
