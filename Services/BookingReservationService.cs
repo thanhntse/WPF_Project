@@ -42,5 +42,10 @@ namespace Services
         {
             return this.BookingReservationRepository.GetBookingReservationsOfCustomer(id);
         }
+
+        public List<BookingReservation> GetByDateRange(DateTime startDate, DateTime endDate)
+        {
+            return this.BookingReservationRepository.GetByDateRange(startDate, endDate);
+        }
     }
 }

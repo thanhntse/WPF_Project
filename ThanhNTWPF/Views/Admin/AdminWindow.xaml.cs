@@ -52,6 +52,9 @@ namespace ThanhNTWPF.Views.Admin
                     case "Booking":
                         ContentArea.Content = new BookingManagement();
                         break;
+                    case "Report":
+                        ContentArea.Content = new Reports();
+                        break;
                     case "SignOut":
                         LoginWindow login = new LoginWindow();
                         login.Show();
@@ -71,6 +74,7 @@ namespace ThanhNTWPF.Views.Admin
                 tt_contacts.Visibility = Visibility.Collapsed;
                 tt_room.Visibility = Visibility.Collapsed;
                 tt_booking.Visibility = Visibility.Collapsed;
+                tt_report.Visibility = Visibility.Collapsed;
                 tt_signout.Visibility = Visibility.Collapsed;
             }
             else
@@ -79,6 +83,7 @@ namespace ThanhNTWPF.Views.Admin
                 tt_contacts.Visibility = Visibility.Visible;
                 tt_room.Visibility = Visibility.Visible;
                 tt_booking.Visibility = Visibility.Visible;
+                tt_report.Visibility = Visibility.Visible;
                 tt_signout.Visibility = Visibility.Visible;
             }
         }

@@ -37,5 +37,10 @@ namespace Services
         {
             return this.BookingDetailRepository.GetAllByRoomId(roomId);
         }
+
+        public List<BookingDetail> GetAllByBookingId(int bookingId)
+        {
+            return this.BookingDetailRepository.GetAllByBookingId(bookingId);
+        }
     }
 }

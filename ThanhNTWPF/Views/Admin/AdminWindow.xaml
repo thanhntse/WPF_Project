@@ -502,6 +502,39 @@
 
                         </ListViewItem>
 
+                        <!--// Report //-->
+
+                        <ListViewItem HorizontalAlignment="Left"
+                            Margin="0,0,0,15" 
+                            Cursor="Hand"
+                            MouseEnter="ListViewItem_MouseEnter"
+                            Tag="Report">
+
+                            <StackPanel Orientation="Horizontal"
+                                    Width="300">
+
+                                <Image Source="../../Assets/img-report.png"
+                                     Stretch="Fill"
+                                     Margin="4,0,-4,0"/>
+
+                                <TextBlock Text="Report"
+                                         Margin="25,0,0,0"
+                                         Style="{StaticResource font_style}"/>
+
+                            </StackPanel>
+
+                            <!--// Tooltip //-->
+
+                            <ListViewItem.ToolTip>
+
+                                <ToolTip x:Name="tt_report"
+                                       Content="Report"
+                                       Style="{StaticResource tt_style}"/>
+
+                            </ListViewItem.ToolTip>
+
+                        </ListViewItem>
+
                         <!--// Sign Out //-->
 
                         <ListViewItem HorizontalAlignment="Left"

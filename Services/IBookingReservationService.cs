@@ -11,5 +11,6 @@ namespace Services
         void SaveBookingReservation(BookingReservation bookingReservation);
         void UpdateBookingReservation(BookingReservation bookingReservation);
         void DeleteBookingReservation(BookingReservation bookingReservation);
+        List<BookingReservation> GetByDateRange(DateTime startDate, DateTime endDate);
     }
 }
