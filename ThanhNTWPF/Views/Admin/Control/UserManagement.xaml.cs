@@ -134,6 +134,8 @@ namespace ThanhNTWPF.Views.Admin.Control
             }
             finally
             {
+                ResetInput();
+                DgData.SelectedItem = null;
             }
         }
 
@@ -180,6 +182,8 @@ namespace ThanhNTWPF.Views.Admin.Control
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
             UserDialogPopup.IsOpen = false;
+            ResetInput();
+            DgData.SelectedItem = null;
         }
 
         private void TxtSearch_TextChanged(object sender, TextChangedEventArgs e)

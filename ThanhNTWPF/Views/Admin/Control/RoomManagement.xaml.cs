@@ -151,6 +151,11 @@ namespace ThanhNTWPF.Views.Admin.Control
             {
                 MessageBox.Show(ex.Message);
             }
+            finally
+            {
+                ResetInput();
+                DgData.SelectedItem = null;
+            }
         }
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
@@ -197,6 +202,8 @@ namespace ThanhNTWPF.Views.Admin.Control
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
             RoomDialogPopup.IsOpen = false;
+            ResetInput();
+            DgData.SelectedItem = null;
         }
 
         private void TxtSearch_TextChanged(object sender, TextChangedEventArgs e)

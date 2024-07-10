@@ -1,4 +1,5 @@
 ﻿using BusinessObjects.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -89,6 +90,16 @@ namespace DataAccessObjects
             {
                 throw new Exception(ex.Message);
             }
+        }
+
+        public List<BookingReservation> GetByDateRange(DateTime startDate, DateTime endDate)
+        {
+            using var db = new FuminiHotelManagementContext();
+            return db.BookingReservations
+                .Include(br => br.Customer)
+                .Where(br => br.BookingDate >= startDate && br.BookingDate <= endDate)
+                .OrderByDescending(br => br.BookingDate)
+                .ToList();
         }
     }
 }

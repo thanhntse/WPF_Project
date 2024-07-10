@@ -39,6 +39,12 @@ namespace DataAccessObjects
             return db.BookingDetails.Where(bd => bd.RoomId == roomId).ToList();
         }
 
+        public List<BookingDetail> GetAllByBookingId(int bookingId)
+        {
+            using var db = new FuminiHotelManagementContext();
+            return db.BookingDetails.Where(bd => bd.BookingReservationId == bookingId).ToList();
+        }
+
         public void SaveBookingDetail(BookingDetail bookingDetail)
         {
             try

@@ -65,7 +65,6 @@ public partial class FuminiHotelManagementContext : DbContext
             entity.ToTable("BookingReservation");
 
             entity.Property(e => e.BookingReservationId)
-                .ValueGeneratedNever()
                 .HasColumnName("BookingReservationID");
             entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
             entity.Property(e => e.TotalPrice).HasColumnType("money");

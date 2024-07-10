@@ -20,5 +20,8 @@ namespace Repositories
 
         public List<BookingDetail> GetAllByRoomId(int roomId)
             => BookingDetailDAO.Instance.GetAllByRoomId(roomId);
+
+        public List<BookingDetail> GetAllByBookingId(int bookingId)
+            => BookingDetailDAO.Instance.GetAllByBookingId(bookingId);
     }
 }

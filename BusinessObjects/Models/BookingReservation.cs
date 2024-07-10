@@ -7,7 +7,7 @@ public partial class BookingReservation
 {
     public int BookingReservationId { get; set; }
 
-    public DateOnly? BookingDate { get; set; }
+    public DateTime? BookingDate { get; set; }
 
     public decimal? TotalPrice { get; set; }
 
