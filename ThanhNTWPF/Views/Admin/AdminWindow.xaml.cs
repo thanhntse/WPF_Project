@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BusinessObjects.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ThanhNTWPF.Views.Admin.Control;
 
 namespace ThanhNTWPF.Views.Admin
 {
@@ -23,6 +25,40 @@ namespace ThanhNTWPF.Views.Admin
         public AdminWindow()
         {
             InitializeComponent();
+            LV.SelectedIndex = 0;
+        }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+                DragMove();
+        }
+
+        private void LV_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (LV.SelectedItem is ListViewItem selectedItem)
+            {
+                switch (selectedItem.Tag.ToString())
+                {
+                    case "Home":
+                        ContentArea.Content = new HomeControl();
+                        break;
+                    case "User":
+                        ContentArea.Content = new UserManagement();
+                        break;
+                    case "Room":
+                        ContentArea.Content = new RoomManagement();
+                        break;
+                    case "Booking":
+                        ContentArea.Content = new BookingManagement();
+                        break;
+                    case "SignOut":
+                        LoginWindow login = new LoginWindow();
+                        login.Show();
+                        this.Close();
+                        break;
+                }
+            }
         }
 
         private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
@@ -33,18 +69,16 @@ namespace ThanhNTWPF.Views.Admin
             {
                 tt_home.Visibility = Visibility.Collapsed;
                 tt_contacts.Visibility = Visibility.Collapsed;
-                tt_messages.Visibility = Visibility.Collapsed;
-                tt_maps.Visibility = Visibility.Collapsed;
-                tt_settings.Visibility = Visibility.Collapsed;
+                tt_room.Visibility = Visibility.Collapsed;
+                tt_booking.Visibility = Visibility.Collapsed;
                 tt_signout.Visibility = Visibility.Collapsed;
             }
             else
             {
                 tt_home.Visibility = Visibility.Visible;
                 tt_contacts.Visibility = Visibility.Visible;
-                tt_messages.Visibility = Visibility.Visible;
-                tt_maps.Visibility = Visibility.Visible;
-                tt_settings.Visibility = Visibility.Visible;
+                tt_room.Visibility = Visibility.Visible;
+                tt_booking.Visibility = Visibility.Visible;
                 tt_signout.Visibility = Visibility.Visible;
             }
         }
@@ -66,7 +100,12 @@ namespace ThanhNTWPF.Views.Admin
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            Application.Current.Shutdown();
+        }
+
+        private void MinimizeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
         }
     }
 }
