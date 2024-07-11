@@ -47,7 +47,7 @@ namespace ThanhNTWPF.Views.Admin.Control
             TxtMaxCapacity.Text = "";
             TxtPricePerDay.Text = "";
             ComboRoomType.SelectedIndex = -1;
-            RbActive.IsChecked = false;
+            RbActive.IsChecked = true;
             RbInactive.IsChecked = false;
         }
 

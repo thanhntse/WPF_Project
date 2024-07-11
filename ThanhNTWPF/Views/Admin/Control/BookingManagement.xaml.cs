@@ -49,7 +49,7 @@ namespace ThanhNTWPF.Views.Admin.Control
         {
             DateBookingDate.SelectedDate = null;
             ComboCustomer.SelectedIndex = -1;
-            RbActive.IsChecked = false;
+            RbActive.IsChecked = true;
             RbInactive.IsChecked = false;
         }
 

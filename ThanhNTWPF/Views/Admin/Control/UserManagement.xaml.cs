@@ -42,7 +42,7 @@ namespace ThanhNTWPF.Views.Admin.Control
             TxtTelephone.Text = "";
             TxtEmail.Text = "";
             DateBirthday.SelectedDate = null;
-            RbActive.IsChecked = false;
+            RbActive.IsChecked = true;
             RbInactive.IsChecked = false;
             TxtPassword.Password = "";
         }
